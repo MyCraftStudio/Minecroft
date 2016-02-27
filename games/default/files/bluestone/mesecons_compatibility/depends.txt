@@ -1,4 +1,0 @@
-
-mesecons
-doors
-default
