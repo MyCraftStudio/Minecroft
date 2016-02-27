@@ -24,23 +24,27 @@ end
 
 
 local function get_formspec(tabview, name, tabdata)
+	local logo = defaulttexturedir .. "right.png"
 	local retval = ""
-
 	local index = filterlist.get_current_index(menudata.worldlist,
 				tonumber(core.setting_get("mainmenu_last_selected_world"))
 				)
 
 	retval = retval ..
-			"button[3.5,4.5;2.6,0.5;world_delete;".. fgettext("Delete") .. "]" ..
-			"button[6,4.5;2.8,0.5;world_create;".. fgettext("New") .. "]" ..
-			"button[8.7,4.5;3.30,0.5;play;".. fgettext("Play") .. "]" ..
-			"checkbox[0.0,4;cb_creative_mode;".. fgettext("Creative Inventory") .. ";" ..
+			--"size[12,5.2];"..
+            --"box[-100,8.5;200,10;#999999]" ..
+            --"box[-100,-10;200,12;#999999]" ..
+            --"bgcolor[#AAAAAA80;true]"..
+			--"image[-2.25,-1.5 ;17.5,3.5;" .. logo .. "]" ..
+			"image_button[2.64,4.8;6.8,0.8;"..core.formspec_escape(defaulttexturedir).."menu_button.png;play;".. fgettext("Play") .. ";true;true;"..core.formspec_escape(defaulttexturedir).."menu_button_b.png]"..
+			"image_button[1,5.6;5,0.8;"..core.formspec_escape(defaulttexturedir).."menu_button.png;world_delete;".. fgettext("Delete") .. ";true;true;"..core.formspec_escape(defaulttexturedir).."menu_button_b.png]"..
+			"image_button[6,5.6;5,0.8;"..core.formspec_escape(defaulttexturedir).."menu_button.png;world_create;".. fgettext("Create") .. ";true;true;"..core.formspec_escape(defaulttexturedir).."menu_button_b.png]"..
+
+			"checkbox[0.0,4.65;cb_creative_mode;".. fgettext("Creative Mode") .. ";" ..
 			dump(core.setting_getbool("creative_mode")) .. "]"..
-			"checkbox[0.0,4.5;cb_enable_damage;".. fgettext("Survival Mode") .. ";" ..
-			dump(core.setting_getbool("enable_damage")) .. "]"..
-			"textlist[0,0;11.75,3.7;sp_worlds;" ..
+			"textlist[0,0;11.75,4.5;sp_worlds;" ..
 			menu_render_worldlist() ..
-			";" .. index .. "]"
+			";" .. index .. ";true]"
 	return retval
 end
 
@@ -71,21 +75,18 @@ local function main_button_handler(this, fields, name, tabdata)
 		return true
 	end
 
-	if fields["cb_creative_mode"] then
-		core.setting_set("creative_mode", fields["cb_creative_mode"])
-		local selected = core.get_textlist_index("sp_worlds")
-		menu_worldmt(selected, "creative_mode", fields["cb_creative_mode"])
-
-		return true
-	end
-
-	if fields["cb_enable_damage"] then
-		core.setting_set("enable_damage", fields["cb_enable_damage"])
-		local selected = core.get_textlist_index("sp_worlds")
-		menu_worldmt(selected, "enable_damage", fields["cb_enable_damage"])
-
-		return true
-	end
+    if fields["cb_creative_mode"] then
+            core.setting_set("creative_mode", fields["cb_creative_mode"])
+            local bool = fields["cb_creative_mode"]
+            if bool == 'true' then
+                bool = 'false'
+            else
+                bool = 'true'
+            end
+                core.setting_set("enable_damage", bool)
+                core.setting_save()
+            return true
+    end
 
 	if fields["play"] ~= nil or
 		world_doubleclick or

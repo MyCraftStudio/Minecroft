@@ -28,8 +28,7 @@ function modstore.init(size, unsortedmods, searchmods)
 	modstore.mods_on_search_page = searchmods
 	modstore.modsperpage = modstore.mods_on_unsorted_page
 
-	modstore.basetexturedir = core.get_texturepath() .. DIR_DELIM .. "base" ..
-						DIR_DELIM .. "pack" .. DIR_DELIM
+	modstore.basetexturedir = core.get_texturepath() .. DIR_DELIM
 
 	modstore.lastmodtitle = ""
 	modstore.last_search = ""

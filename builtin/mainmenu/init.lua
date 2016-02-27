@@ -24,8 +24,7 @@ mt_color_dark_green = "#003300"
 
 local menupath = core.get_mainmenu_path()
 local basepath = core.get_builtin_path()
-defaulttexturedir = core.get_texturepath_share() .. DIR_DELIM .. "base" ..
-					DIR_DELIM .. "pack" .. DIR_DELIM
+defaulttexturedir = core.get_texturepath_share() .. DIR_DELIM
 
 dofile(basepath .. DIR_DELIM .. "common" .. DIR_DELIM .. "async_event.lua")
 dofile(basepath .. DIR_DELIM .. "common" .. DIR_DELIM .. "filterlist.lua")
@@ -35,22 +34,22 @@ dofile(basepath .. DIR_DELIM .. "fstk" .. DIR_DELIM .. "tabview.lua")
 dofile(basepath .. DIR_DELIM .. "fstk" .. DIR_DELIM .. "ui.lua")
 dofile(menupath .. DIR_DELIM .. "common.lua")
 dofile(menupath .. DIR_DELIM .. "gamemgr.lua")
-dofile(menupath .. DIR_DELIM .. "modmgr.lua")
-dofile(menupath .. DIR_DELIM .. "store.lua")
+--dofile(menupath .. DIR_DELIM .. "modmgr.lua")
+--dofile(menupath .. DIR_DELIM .. "store.lua")
 dofile(menupath .. DIR_DELIM .. "dlg_config_world.lua")
-dofile(menupath .. DIR_DELIM .. "tab_credits.lua")
-dofile(menupath .. DIR_DELIM .. "tab_mods.lua")
-dofile(menupath .. DIR_DELIM .. "tab_settings.lua")
-dofile(menupath .. DIR_DELIM .. "dlg_settings_advanced.lua")
+--dofile(menupath .. DIR_DELIM .. "tab_credits.lua")
+--dofile(menupath .. DIR_DELIM .. "tab_mods.lua")
+--dofile(menupath .. DIR_DELIM .. "tab_settings.lua")
+--dofile(menupath .. DIR_DELIM .. "dlg_settings_advanced.lua")
 dofile(menupath .. DIR_DELIM .. "dlg_create_world.lua")
-dofile(menupath .. DIR_DELIM .. "dlg_delete_mod.lua")
+--dofile(menupath .. DIR_DELIM .. "dlg_delete_mod.lua")
 dofile(menupath .. DIR_DELIM .. "dlg_delete_world.lua")
-dofile(menupath .. DIR_DELIM .. "dlg_rename_modpack.lua")
-dofile(menupath .. DIR_DELIM .. "tab_multiplayer.lua")
-dofile(menupath .. DIR_DELIM .. "tab_server.lua")
+--dofile(menupath .. DIR_DELIM .. "dlg_rename_modpack.lua")
+--dofile(menupath .. DIR_DELIM .. "tab_multiplayer.lua")
+--dofile(menupath .. DIR_DELIM .. "tab_server.lua")
 dofile(menupath .. DIR_DELIM .. "tab_singleplayer.lua")
-dofile(menupath .. DIR_DELIM .. "tab_texturepacks.lua")
-dofile(menupath .. DIR_DELIM .. "textures.lua")
+--dofile(menupath .. DIR_DELIM .. "tab_texturepacks.lua")
+--dofile(menupath .. DIR_DELIM .. "textures.lua")
 
 --------------------------------------------------------------------------------
 local function main_event_handler(tabview, event)
@@ -86,49 +85,45 @@ local function init_globals()
 			core.setting_set("menu_last_game", default_game )
 		end
 
-		mm_texture.init()
 
 	-- Create main tabview
-	local tv_main = tabview_create("maintab",{x=12,y=5.2},{x=0,y=0})
-	if PLATFORM ~= "Android" then
-		tv_main:set_autosave_tab(true)
-	end
+	local tv_main = tabview_create("maintab",{x=12,y=6},{x=0,y=0})
+	--if PLATFORM ~= "Android" then
+		--tv_main:set_autosave_tab(true)
+	--end
 	tv_main:add(tab_singleplayer)
-	tv_main:add(tab_multiplayer)
-	tv_main:add(tab_server)
-	if PLATFORM ~= "Android" then
-		tv_main:add(tab_settings)
-		tv_main:add(tab_texturepacks)
+	--tv_main:add(tab_multiplayer)
+	--tv_main:add(tab_server)
+	--if PLATFORM ~= "Android" then
+		--tv_main:add(tab_settings)
+		--tv_main:add(tab_texturepacks)
 		--tv_main:add(tab_mods)
-	end
-	tv_main:add(tab_credits)
+	--end
+	--tv_main:add(tab_credits)
 
-	tv_main:set_global_event_handler(main_event_handler)
+	--tv_main:set_global_event_handler(main_event_handler)
 
 	tv_main:set_fixed_size(false)
 
-	if not (PLATFORM == "Android") then
-		tv_main:set_tab(core.setting_get("maintab_LAST"))
-	end
+	--if not (PLATFORM == "Android") then
+		--tv_main:set_tab(core.setting_get("maintab_LAST"))
+	--end
 	ui.set_default("maintab")
 	tv_main:show()
 
 	-- Create modstore ui
-	if PLATFORM == "Android" then
-		modstore.init({x=12, y=6}, 3, 2)
-	else
-		modstore.init({x=12, y=8}, 4, 3)
-	end
+	--if PLATFORM == "Android" then
+		--modstore.init({x=12, y=6}, 3, 2)
+	--else
+		--modstore.init({x=12, y=8}, 4, 3)
+	--end
 
 	ui.update()
 
-	core.sound_play("main_menu", false)
+	--core.sound_play("main_menu", false)
 
-	mm_texture.clear("header")
-	mm_texture.clear("footer")
-	minetest.set_clouds(false)
-	minetest.set_background("background",minetest.formspec_escape(mm_texture.basetexturedir)..'background.jpg')
-	--minetest.set_background("header",minetest.formspec_escape(mm_texture.basetexturedir)..'header.png')
+	core.set_clouds(false)
+	core.set_background("background", defaulttexturedir .. "background.png");
 end
 
 init_globals()
