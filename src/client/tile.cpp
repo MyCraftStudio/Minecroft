@@ -147,8 +147,7 @@ std::string getTexturePath(const std::string &filename)
 	*/
 	if (fullpath == "")
 	{
-		std::string base_path = porting::path_share + DIR_DELIM + "textures"
-				+ DIR_DELIM + "base" + DIR_DELIM + "pack";
+		std::string base_path = porting::path_share + DIR_DELIM + "textures";
 		std::string testpath = base_path + DIR_DELIM + filename;
 		// Check all filename extensions. Returns "" if not found.
 		fullpath = getImagePath(testpath);

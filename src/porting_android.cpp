@@ -69,10 +69,10 @@ void android_main(android_app *app)
 /* TODO this doesn't work as expected, no idea why but there's a workaround   */
 /* for it right now */
 extern "C" {
-	JNIEXPORT void JNICALL Java_mobi_MultiCraft_MCNativeActivity_putMessageBoxResult(
+	JNIEXPORT void JNICALL Java_com_MyCraft_MCNativeActivity_putMessageBoxResult(
 			JNIEnv * env, jclass thiz, jstring text)
 	{
-		errorstream << "Java_mobi_MultiCraft_MCNativeActivity_putMessageBoxResult got: "
+		errorstream << "Java_com_MyCraft_MCNativeActivity_putMessageBoxResult got: "
 				<< std::string((const char*)env->GetStringChars(text,0))
 				<< std::endl;
 	}
@@ -136,7 +136,7 @@ void initAndroid()
 		exit(-1);
 	}
 
-	nativeActivity = findClass("mobi/MultiCraft/MCNativeActivity");
+	nativeActivity = findClass("com/MyCraft/MCNativeActivity");
 	if (nativeActivity == 0) {
 		errorstream <<
 			"porting::initAndroid unable to find java native activity class" <<
@@ -217,8 +217,8 @@ void initializePathsAndroid()
 			cls_File, mt_getAbsPath, "getCacheDir");
 	path_storage = getAndroidPath(cls_Env, NULL, cls_File, mt_getAbsPath,
 			"getExternalStorageDirectory");
-	path_user    = path_storage + DIR_DELIM + "Android/data/mobi.MultiCraft/Files";
-	path_share   = path_storage + DIR_DELIM + "Android/data/mobi.MultiCraft/Files";
+	path_user    = path_storage + DIR_DELIM + "Android/data/com.MyCraft/files";
+	path_share   = path_user;
 
 	migrateCachePath();
 }

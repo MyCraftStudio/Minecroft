@@ -60,7 +60,7 @@ const char *touchgui_button_imagenames[] = {
 //	"debug_btn.png",
 	"chat.png",
 //	"camera.png",
-	"rangeview.png"
+//	"rangeview.png"
 };
 
 static irr::EKEY_CODE id2keycode(touch_gui_button_id id)
@@ -126,9 +126,9 @@ static irr::EKEY_CODE id2keycode(touch_gui_button_id id)
 		/*case camera_id:
 			key = "camera_mode";
 			break;*/
-		case range_id:
+		/*case range_id:
 			key = "rangeselect";
-			break;
+			break;*/
 	}
 	assert(key != "");
 	return keyname_to_keycode(g_settings->get("keymap_" + key).c_str());
@@ -284,17 +284,17 @@ void TouchScreenGUI::init(ISimpleTextureSource* tsrc)
 	/* init inventory button */
 	initButton(inventory_id,
 	           rect<s32>(m_screensize.X-(button_size),
-					   m_screensize.Y - (button_size),
+					   m_screensize.Y-(button_size),
 					   m_screensize.X,
 					   m_screensize.Y),
 	                  L"inv", false, SLOW_BUTTON_REPEAT);
 
 	/* init drop button */
 	initButton(drop_id,
-	           rect<s32>(m_screensize.X-(1*button_size),
-					   m_screensize.Y/2-(2*button_size),
+	           rect<s32>(m_screensize.X-(0.75*button_size),
+					   m_screensize.Y/2-(0.75*button_size),
 					   m_screensize.X,
-					   m_screensize.Y/2-(1*button_size)),
+					   m_screensize.Y/2),
 			L"drop", false, SLOW_BUTTON_REPEAT);
 
 	/* init crunch button */
@@ -350,11 +350,11 @@ void TouchScreenGUI::init(ISimpleTextureSource* tsrc)
 					m_screensize.X, button_size),
 			L"Chat", false, SLOW_BUTTON_REPEAT);
 
-	/* init rangeselect button */
+	/* init rangeselect button 
 	initButton(range_id,					
 					rect<s32>(m_screensize.X - (2*button_size), 0,
 					m_screensize.X - (button_size), button_size),
-			L"far", false, SLOW_BUTTON_REPEAT);
+			L"far", false, SLOW_BUTTON_REPEAT);*/
 	
 		/* init camera button 
 	initButton(camera_id,

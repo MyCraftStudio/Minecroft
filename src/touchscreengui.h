@@ -57,7 +57,7 @@ typedef enum {
 //	debug_id,
 	chat_id,
 //	camera_id,
-	range_id,
+//	range_id,
 	after_last_element_id
 } touch_gui_button_id;
 

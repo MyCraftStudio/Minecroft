@@ -178,7 +178,7 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("enable_particles", "true");
 	settings->setDefault("enable_mesh_cache", "false");
 	settings->setDefault("enable_vbo", "true");
-	
+
 	settings->setDefault("enable_minimap", "true");
 	settings->setDefault("minimap_shape_round", "true");
 	settings->setDefault("minimap_double_scan_height", "false");
@@ -308,8 +308,8 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("liquid_update", "1.0");
 
 	//mapgen stuff
-	settings->setDefault("mg_name", "v6");
-	settings->setDefault("water_level", "1");
+	settings->setDefault("mg_name", "valleys");
+	settings->setDefault("water_level", "0");
 	settings->setDefault("chunksize", "5");
 	settings->setDefault("mg_flags", "dungeons");
 	settings->setDefault("mgv6_spflags", "jungles, snowbiomes, trees");
@@ -346,31 +346,40 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("enable_3d_clouds", "false");
 	settings->setDefault("fps_max", "40");
 	settings->setDefault("pause_fps_max", "10");
-	settings->setDefault("max_objects_per_block", "32");
+	settings->setDefault("max_objects_per_block", "20");
 	settings->setDefault("sqlite_synchronous", "1");
 	settings->setDefault("gui_scaling", "1.1");
 	settings->setDefault("curl_verify_cert","false");
-	settings->setDefault("mouse_sensitivity", "0.15");
-	settings->setDefault("hud_scaling", "0.9");
-	settings->setDefault("viewing_range", "25");
+	settings->setDefault("viewing_range", "30");
 	settings->setDefault("inventory_image_hack", "false");
 	settings->setDefault("doubletap_jump", "true");
-	settings->setDefault("mono_font_path", "/system/fonts/DroidSansMono.ttf");
-	settings->setDefault("fallback_font_path", "/system/fonts/DroidSans.ttf");
-
+	settings->setDefault("server_map_save_interval", "30");
+	settings->setDefault("client_unload_unused_data_timeout", "120");
+	settings->setDefault("active_block_range", "1");
+    settings->setDefault("chunksize", "3");
+	
+	settings->setDefault("hud_scaling", "0.9");
+	
 	//check for device with small screen
 	float x_inches = ((double) porting::getDisplaySize().X /
 			(160 * porting::getDisplayDensity()));
 	if (x_inches < 3.5) {
 		settings->setDefault("hud_scaling", "0.5");
-		settings->setDefault("mouse_sensitivity", "0.1");
-		settings->setDefault("font_size","12");
 	}
 	else if (x_inches < 5.5) {
 		settings->setDefault("hud_scaling", "0.6");
-		settings->setDefault("mouse_sensitivity", "0.1");
-		settings->setDefault("font_size","14");
 	}
+	else if (x_inches > 5.5) {
+		settings->setDefault("hud_scaling", "0.9");
+		settings->setDefault("mouse_sensitivity", "0.15");
+	}
+
+	std::stringstream anddroidfontsize;
+	anddroidfontsize << DEFAULT_FONT_SIZE / 3 * x_inches;
+	settings->setDefault("font_size", anddroidfontsize.str());
+	settings->setDefault("mono_font_path", "/system/fonts/DroidSansMono.ttf");
+	settings->setDefault("fallback_font_path", "/system/fonts/DroidSans.ttf");
+
 #endif
 }
 
