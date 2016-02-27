@@ -1,11 +1,13 @@
-MultiCraft Open Source Project
+Minecroft Game
 ========
 
-MultiCraft is an Open Source sandbox game inspired by [Minecraft](https://minecraft.net/).
+Minecroft Game is an Open Source sandbox game inspired by [Minecraft](https://minecraft.net/).
 
-MultiCraft is based on Minetest project which is developed by a [number of contributors](https://github.com/minetest/minetest/graphs/contributors).
+Minecroft Game is based on Minetest and MultiCraft Open Source Project project which is developed by a [number of contributors](https://github.com/minetest/minetest/graphs/contributors).
 
-Copyright (c) 2014-2016 Maksim Gamarnik [MoNTE48] <MoNTE48@mail.ua> & MultiCraft Developement Team.
+Many thanks Maksim Gamarnik [MoNTE48] <MoNTE48@mail.ua> & MultiCraft Developement Team.
+
+We received exclusive permission from MultiCraft Team to use all of their work in the this project without any restrictions.
 
 The engine and the game is licensed under LGPLv3 (or higher). Resources games licensed under CC-BY-SA 3.0, unless otherwise stated, and also a bit of proprietary code and resources.
 
