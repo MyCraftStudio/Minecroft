@@ -127,8 +127,8 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("view_bobbing_amount", "1.0");
 	settings->setDefault("fall_bobbing_amount", "1.0");
 	settings->setDefault("enable_3d_clouds", "true");
-	settings->setDefault("cloud_height", "180");
-	settings->setDefault("cloud_radius", "12");
+	settings->setDefault("cloud_height", "120");
+	settings->setDefault("cloud_radius", "6");
 	settings->setDefault("menu_clouds", "false");
 	settings->setDefault("opaque_water", "false");
 	settings->setDefault("console_color", "(0,0,0)");
@@ -309,7 +309,7 @@ void set_default_settings(Settings *settings)
 
 	//mapgen stuff
 	settings->setDefault("mg_name", "valleys");
-	settings->setDefault("water_level", "0");
+	settings->setDefault("water_level", "1");
 	settings->setDefault("chunksize", "5");
 	settings->setDefault("mg_flags", "dungeons");
 	settings->setDefault("mgv6_spflags", "jungles, snowbiomes, trees");
@@ -329,7 +329,7 @@ void set_default_settings(Settings *settings)
 
 	settings->setDefault("language", "");
 	settings->setDefault("mainmenu_last_selected_world", "1");
-
+	
 #ifdef __ANDROID__
 	settings->setDefault("screenW", "0");
 	settings->setDefault("screenH", "0");
@@ -354,12 +354,10 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("inventory_image_hack", "false");
 	settings->setDefault("doubletap_jump", "true");
 	settings->setDefault("server_map_save_interval", "30");
-	settings->setDefault("client_unload_unused_data_timeout", "120");
+	settings->setDefault("client_unload_unused_data_timeout", "90");
 	settings->setDefault("active_block_range", "1");
     settings->setDefault("chunksize", "3");
-	
-	settings->setDefault("hud_scaling", "0.9");
-	
+
 	//check for device with small screen
 	float x_inches = ((double) porting::getDisplaySize().X /
 			(160 * porting::getDisplayDensity()));

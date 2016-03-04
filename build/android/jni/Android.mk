@@ -24,7 +24,7 @@ include $(PREBUILT_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := openal
-LOCAL_SRC_FILES := deps/openal-soft/libs/$(TARGET_LIBDIR)/libopenal.so
+LOCAL_SRC_FILES := deps/openal-soft/android/libs/$(TARGET_LIBDIR)/libopenal.so
 include $(PREBUILT_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
@@ -78,7 +78,7 @@ ifndef NDEBUG
 LOCAL_CFLAGS += -g -D_DEBUG -O0 -fno-omit-frame-pointer
 else
 
-LOCAL_CFLAGS += -mfpu=vfpv3-d16 -D_NDK_MATH_NO_SOFTFP=1 -mfloat-abi=hard -march=armv7-a -Ofast -fno-fast-math -fdata-sections -ffunction-sections
+LOCAL_CFLAGS += -mfpu=vfpv3-d16 -D_NDK_MATH_NO_SOFTFP=1 -mfloat-abi=hard -march=armv7-a -Ofast -fno-fast-math -fdata-sections -ffunction-sections -fmodulo-sched -fmodulo-sched-allow-regmoves
 LOCAL_LDFLAGS = -Wl,--no-warn-mismatch,--gc-sections -lm_hard
 # ToDo - disable for x86!
 
@@ -102,7 +102,7 @@ LOCAL_C_INCLUDES :=                               \
 		deps/libiconv/include                     \
 		deps/freetype/include                     \
 		deps/curl/include                         \
-		deps/openal-soft/jni/OpenAL/include       \
+		deps/openal-soft/include                  \
 		deps/libvorbis-libogg-android/jni/include \
 		deps/gmp/usr/include                      \
 		deps/sqlite/                              \

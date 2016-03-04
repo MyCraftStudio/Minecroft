@@ -30,6 +30,8 @@ gtags.files
 /bin/
 /cache
 /screenshots
+/packages
+/_build
 
 ## Configuration/log files
 debug.txt
